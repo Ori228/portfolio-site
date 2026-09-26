@@ -1,6 +1,8 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { ClerkProvider } from "@clerk/nextjs";
+
 import './globals.css'
 
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
@@ -10,7 +12,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Alex Rivera — Developer Portfolio',
+  title: 'Ori Hermos — Developer Portfolio',
   description:
     'Full-stack developer building fast, thoughtful software. Selected projects, open source work, and experiments.',
   generator: 'v0.app',
@@ -41,17 +43,21 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`bg-background ${geistSans.variable} ${geistMono.variable}`}
-    >
-      <body className="font-sans antialiased">
-        {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
-      </body>
-    </html>
-  )
+    <ClerkProvider>
+      <html
+        lang="en"
+        className={`bg-background ${geistSans.variable} ${geistMono.variable}`}
+      >
+        <body className="font-sans antialiased">
+          {children}
+          {process.env.NODE_ENV === "production" && <Analytics />}
+        </body>
+      </html>
+    </ClerkProvider>
+  );
 }
+
+

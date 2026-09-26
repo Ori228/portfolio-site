@@ -1,49 +1,54 @@
+import { Show, SignInButton, SignUpButton } from "@clerk/nextjs";
+import Link from "next/link";
 import { GradientBackground } from "@/components/gradient-background";
-import { Hero } from "@/components/hero";
-import { ProjectCard } from "@/components/project-card";
-import { projects } from "@/lib/projects";
-import { AddProjectModal } from "@/components/add-project-modal";
 
-export default function Page() {
+export default function LandingPage() {
   return (
     <>
       <GradientBackground />
-      <main className="relative z-10 mx-auto min-h-screen w-full max-w-5xl px-6">
-        <Hero />
+      <main className="relative z-10 mx-auto min-h-screen w-full max-w-5xl px-6 flex flex-col">
+        {/* Main Hero Section */}
+        <div className="flex-1 flex flex-col items-center justify-center text-center space-y-8 mb-32">
+          <h1 className="text-5xl font-bold tracking-tight sm:text-7xl text-foreground">
+            Developer Portfolio
+          </h1>
+          <p className="max-w-2xl text-lg text-muted-foreground">
+            Create, manage, and showcase your personal coding projects. Your
+            complete portfolio management system, all in one secure place.
+          </p>
 
-        <section id="projects" className="pb-28">
-          <div className="mb-10 flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                Selected projects
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                A handful of things I&apos;ve designed, built, and shipped.
-              </p>
-            </div>
-            <span className="hidden font-mono text-sm text-muted-foreground sm:block">
-              {String(projects.length).padStart(2, "0")}
-            </span>
+          <div className="flex items-center justify-center pt-6">
+            {/* Displayed only to guest users */}
+            <Show when="signed-out">
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                {/* Primary Button: Sign Up (Solid Color) */}
+                <SignUpButton mode="modal">
+                  <button className="rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-sm hover:scale-105 transition-transform">
+                    Sign Up for Free
+                  </button>
+                </SignUpButton>
+
+                {/* Secondary Button: Log In (Outline / Ghost style) */}
+                <SignInButton mode="modal">
+                  <button className="rounded-xl border border-border bg-transparent px-8 py-4 text-base font-semibold text-foreground shadow-sm hover:bg-muted hover:scale-105 transition-all">
+                    Log In
+                  </button>
+                </SignInButton>
+              </div>
+            </Show>
+
+            {/* Displayed only to authenticated users */}
+            <Show when="signed-in">
+              <Link
+                href="/dashboard"
+                className="rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-sm hover:scale-105 transition-transform"
+              >
+                Go to My Dashboard
+              </Link>
+            </Show>
           </div>
-
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.title}
-                project={project}
-                index={index}
-              />
-            ))}
-          </div>
-        </section>
-
-        <footer className="border-t border-border py-10 text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Ori Hermos. Built with Next.js.</p>
-        </footer>
+        </div>
       </main>
-
-      {/* כאן הוספנו את כפתור הפלוס והחלונית */}
-      <AddProjectModal />
     </>
   );
 }

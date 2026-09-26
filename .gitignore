@@ -7,9 +7,18 @@ __v0_jsx-dev-runtime.ts
 .vercel/
 
 # Environment variables
+.env
 .env*.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Common ignores
 node_modules
 .next/
 .DS_Store
+
+# Custom local files
+extract.py
+all_code.txt
+צ'אט.txt
