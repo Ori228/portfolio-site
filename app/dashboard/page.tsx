@@ -27,13 +27,22 @@ export default async function DashboardPage() {
     // Convert the comma-separated tags string (e.g., "React, CSS") into an array
     tags: p.tags ? p.tags.split(",").map((t) => t.trim()) : [],
     github: p.link || "https://github.com",
+    projectType: p.projectType,
+    assignmentNames: p.assignmentNames,
     // If it's a multi-assignment project, automatically generate the assignments array based on the given number
     assignments:
-      p.projectType === "multi" && p.numberOfAssignments
-        ? Array.from(
-            { length: p.numberOfAssignments },
-            (_, i) => `Assignment ${i + 1}`,
-          )
+      p.projectType === "multi"
+        ? p.assignmentNames
+          ? p.assignmentNames
+              .split("\n")
+              .map((a) => a.trim())
+              .filter(Boolean)
+          : p.numberOfAssignments
+            ? Array.from(
+                { length: p.numberOfAssignments },
+                (_, i) => `Assignment ${i + 1}`,
+              )
+            : []
         : undefined,
   }));
 

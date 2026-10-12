@@ -16,6 +16,7 @@ export async function createProject(formData: FormData) {
   const tags = formData.get("tags") as string;
   const link = formData.get("link") as string;
   const numberOfAssignments = formData.get("numberOfAssignments");
+  const assignmentNames = formData.get("assignmentNames") as string;
 
   // Write the data into the Supabase table using Prisma
   await prisma.project.create({
@@ -27,6 +28,7 @@ export async function createProject(formData: FormData) {
       tags: tags || null,
       link: link || null,
       numberOfAssignments: numberOfAssignments ? parseInt(numberOfAssignments as string) : null,
+      assignmentNames: assignmentNames || null,
     },
   });
 
@@ -57,6 +59,7 @@ export async function updateProject(formData: FormData) {
   const tags = formData.get("tags") as string;
   const link = formData.get("link") as string;
   const numberOfAssignments = formData.get("numberOfAssignments");
+  const assignmentNames = formData.get("assignmentNames") as string;
 
   await prisma.project.update({
     where: { id, userId },
@@ -67,6 +70,7 @@ export async function updateProject(formData: FormData) {
       tags: tags || null,
       link: link || null,
       numberOfAssignments: numberOfAssignments ? parseInt(numberOfAssignments as string) : null,
+      assignmentNames: assignmentNames || null,
     },
   });
 

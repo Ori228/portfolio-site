@@ -5,7 +5,6 @@ import { Plus, X } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { createProject } from "@/app/actions";
 
-// Component for the submit button, which will show a loading state when the form is being submitted
 function SubmitButton() {
   const { pending } = useFormStatus();
 
@@ -95,29 +94,28 @@ export function AddProjectModal() {
                 />
               </div>
 
-              {projectType === "single" ? (
+              <div>
+                <label className="text-sm font-medium text-muted-foreground">
+                  Description
+                </label>
+                <textarea
+                  name="description"
+                  placeholder="What does this project do?"
+                  rows={3}
+                  className="mt-1.5 w-full resize-none rounded-xl border border-border bg-background p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              {projectType === "multi" && (
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">
-                    Description
+                    Assignments (Enter one name per line)
                   </label>
                   <textarea
-                    name="description"
-                    placeholder="What does this project do?"
-                    rows={3}
-                    className="mt-1.5 w-full resize-none rounded-xl border border-border bg-background p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                </div>
-              ) : (
-                <div>
-                  <label className="text-sm font-medium text-muted-foreground">
-                    Number of Assignments
-                  </label>
-                  <input
-                    type="number"
-                    name="numberOfAssignments"
-                    min="1"
-                    placeholder="e.g. 8"
-                    className="mt-1.5 w-full rounded-xl border border-border bg-background p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    name="assignmentNames"
+                    placeholder="Exercise 1: Bitwise Operations&#10;Exercise 2: Control Flow&#10;Exercise 6: Dungeon Crawler..."
+                    rows={4}
+                    className="mt-1.5 w-full resize-none rounded-xl border border-border bg-background p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary whitespace-pre-wrap"
                   />
                 </div>
               )}
