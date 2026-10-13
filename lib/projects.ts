@@ -1,11 +1,12 @@
-// TODO: replace the placeholder values below with your real links.
+// lib/projects.ts
+
 export const profile = {
   name: 'Ori Hermos',
   intro:
     'Computer science student at Bar-Ilan University. I build practical software and automation tools.',
-  github: 'https://github.com/YOUR-USERNAME',
-  linkedin: 'https://www.linkedin.com/in/YOUR-PROFILE',
-  email: 'your@email.com',
+  github: 'https://github.com/Ori228',
+  linkedin: 'https://www.linkedin.com/in/ori-hermos-aa1677441/',
+  email: 'ori424555@gmail.com',
 }
 
 export type Project = {
@@ -13,48 +14,48 @@ export type Project = {
   description: string
   tags: string[]
   github: string
-  /** When present, the project shows an expandable list of assignments. */
   assignments?: string[]
 }
 
-// TODO: replace with the real assignment names, e.g. 'Bitwise operations'
-const makeAssignments = (n: number) =>
-  Array.from({ length: n }, (_, i) => `Assignment ${i + 1}`)
-
 export const projects: Project[] = [
+  {
+    title: 'Object-Oriented Programming (OOP)',
+    description: '4 academic software projects in Java and Python. Focus on Object-Oriented Design, GUI development, polymorphism, Design Patterns (Observer), and Test-Driven Development (TDD).',
+    tags: ['Java', 'Python', 'OOP', 'TDD', 'JUnit', 'Tkinter', 'Design Patterns'],
+    github: 'https://github.com/Ori228/OOP-B-Projects',
+    assignments: [
+      'Project 1: Arkanoid Game (Java biuoop)',
+      'Project 2: Logical Expressions Engine',
+      'Project 3: Tic-Tac-Toe (TDD & JUnit)',
+      'Project 4: Minesweeper (Python Tkinter)'
+    ],
+  },
+  {
+    title: 'Introduction to Computer Science',
+    description: '7 academic assignments in C and Python. Focus on memory management, pointers, generic data structures (Linked Lists, BST), and algorithms.',
+    tags: ['C', 'Python', 'Memory Management', 'Valgrind', 'Data Structures', 'Linux'],
+    github: 'https://github.com/Ori228/Intro-to-CS-Projects',
+    assignments: [
+      'Exercise 1: Bitwise Operations',
+      'Exercise 2: Control Flow & State Machine',
+      'Exercise 3: Arrays & Connect-4 Logic',
+      'Exercise 4: Recursion & Backtracking',
+      'Exercise 5: Dynamic Memory Allocation',
+      'Exercise 6: Generic Data Structures (BST)',
+      'Exercise 7: Python Scripting'
+    ],
+  },
   {
     title: 'Inbar Grades Bot',
     description:
       'Checks the university portal for new grades and sends a Telegram message the moment one appears.',
     tags: ['Python', 'Playwright', 'Telegram API'],
-    github: 'https://github.com/YOUR-USERNAME/YOUR-REPO',
+    github: 'https://github.com/Ori228/', // TODO: עדכן את הקישור לריפו של הבוט
   },
   {
-    title: 'Introduction to CS',
-    description: 'Course exercises in C and Python, including recursion.',
-    tags: ['C', 'Python', 'Recursion'],
-    github: 'https://github.com/YOUR-USERNAME/YOUR-REPO',
-    assignments: makeAssignments(8),
-  },
-  {
-    title: 'Object-Oriented Programming',
-    description: 'Course exercises in Java, built around object-oriented design.',
-    tags: ['Java', 'OOP'],
-    github: 'https://github.com/YOUR-USERNAME/YOUR-REPO',
-    assignments: makeAssignments(8),
-  },
-  {
-    title: 'Project Manager',
-    description:
-      'An earlier version of this site: sign in, then add, edit and delete projects stored in a database.',
-    tags: ['Next.js', 'Clerk', 'Prisma', 'Supabase'],
-    github:
-      'https://github.com/YOUR-USERNAME/YOUR-REPO/tree/archive/project-manager',
-  },
-  {
-    title: 'This website',
-    description: 'A portfolio built with Next.js and Tailwind, hosted on Vercel.',
-    tags: ['Next.js', 'Tailwind CSS', 'Vercel'],
-    github: 'https://github.com/YOUR-USERNAME/YOUR-REPO',
+    title: 'This Portfolio Website',
+    description: 'A static personal portfolio built with Next.js and Tailwind CSS, hosted on Vercel.',
+    tags: ['Next.js', 'Tailwind CSS', 'Vercel', 'TypeScript'],
+    github: 'https://github.com/Ori228/portfolio-site',
   },
 ]
