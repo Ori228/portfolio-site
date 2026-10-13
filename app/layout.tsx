@@ -1,21 +1,15 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { ClerkProvider } from "@clerk/nextjs";
+import { Archivo } from 'next/font/google'
 
 import './globals.css'
 
-const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
-const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  variable: '--font-geist-mono',
-})
+const archivo = Archivo({ subsets: ['latin'], variable: '--font-archivo' })
 
 export const metadata: Metadata = {
-  title: 'Ori Hermos — Developer Portfolio',
+  title: 'Ori Hermos',
   description:
-    'Full-stack developer building fast, thoughtful software. Selected projects, open source work, and experiments.',
-  generator: 'v0.app',
+    'Computer science student at Bar-Ilan University. Selected projects and automation tools.',
   icons: {
     icon: [
       {
@@ -36,28 +30,19 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'dark',
-  themeColor: '#0b0d17',
+  colorScheme: 'light',
+  themeColor: '#f7f9fc',
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ClerkProvider>
-      <html
-        lang="en"
-        className={`bg-background ${geistSans.variable} ${geistMono.variable}`}
-      >
-        <body className="font-sans antialiased">
-          {children}
-          {process.env.NODE_ENV === "production" && <Analytics />}
-        </body>
-      </html>
-    </ClerkProvider>
-  );
+    <html lang="en" className={archivo.variable}>
+      <body className="font-sans antialiased">
+        {children}
+        {process.env.NODE_ENV === 'production' && <Analytics />}
+      </body>
+    </html>
+  )
 }
-
-
